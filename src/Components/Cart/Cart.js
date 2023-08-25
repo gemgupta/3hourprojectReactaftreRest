@@ -8,12 +8,11 @@ function Cart(props) {
   const amount = CartCtx.totalAmount;
   const hasItem = CartCtx.item.length > 0;
   const RemoveHandler = (id) => {
-    CartCtx.removeItem(id)
-    CartCtx.reduceQuant(id)
+    CartCtx.removeItem(id);
   };
 
   const AddHandler = (item) => {
-    CartCtx.addItem({...item,quantity:1})
+    CartCtx.addItem({ ...item, quantity: 1 });
   };
   const CartItems = (
     <ul className="cart-items">

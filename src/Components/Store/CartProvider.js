@@ -5,9 +5,10 @@ function CartProvider(props) {
   const [items, setitem] = useState([]);
   const [med, setMed] = useState([]);
   const [quantity, setquantity] = useState(0);
-  //   adding items by finding their index and checking if they are already present or not
+  //   adding items by finding their index and checking if they are already present or not && Logic for decrease the quantity
   const addItemHandler = (item1) => {
     const itemIndex = items.findIndex((item) => item.id === item1.id);
+    const itemIndexMed = med.findIndex((item) => item.id === item1.id);
     const existingCartItem = items[itemIndex];
     if (existingCartItem) {
       if (med[itemIndex].quant >= 1) {
@@ -18,13 +19,18 @@ function CartProvider(props) {
         med[itemIndex].quant = med[itemIndex].quant - 1;
       }
     } else {
+      if (med[itemIndexMed].quant >= 1) {
+        med[itemIndexMed].quant = med[itemIndexMed].quant - 1;
+      }
       setitem([...items, item1]);
     }
   };
+  // To calculate the total amount in the cart
   let totalAmount = 0;
   items.forEach((item) => {
     totalAmount = totalAmount + item.price * item.quantity;
   });
+  // To remove items from cart
   const removeItenHandler = (id) => {
     const itemIndex = items.findIndex((item) => item.id === id);
     const existingCartItem = items[itemIndex];
@@ -43,23 +49,13 @@ function CartProvider(props) {
       setitem([...updatedItem]);
     }
   };
+  // To take the data from the Input form
   const addMedHandler = (data) => {
     setMed((prevdata) => {
       return [...prevdata, data];
     });
   };
-  const reduceQuantHandler = (id) => {
-    // const itemIndex = med.findIndex((item) => item.id === id);
-    // const existingCartItem = med[itemIndex];
-    // if (existingCartItem && existingCartItem.quant >= 1 && med[itemIndex].quant>=1) {
-    //   existingCartItem.quant = Number(existingCartItem.quant) - 1;
-    //   setquantity(existingCartItem.quantity);
-    // }
-    // if (existingCartItem.quantity === 0) {
-    //   const updatedItem = items.filter((item) => item.id !== id);
-    //   setitem([...updatedItem]);
-    // }
-  };
+
   const CartContext1 = {
     item: items,
     quantity: quantity,
@@ -68,7 +64,6 @@ function CartProvider(props) {
     removeItem: removeItenHandler,
     addMed: addMedHandler,
     med: med,
-    reduceQuant: reduceQuantHandler,
   };
   return (
     <CartContext.Provider value={CartContext1}>

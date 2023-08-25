@@ -1,13 +1,12 @@
-.meals {
+.meds {
   max-width: 60rem;
   width: 90%;
   margin: 2rem auto;
   animation: meals-appear 1s ease-out forwards;
 }
 
-.meals ul {
+.meds ul {
   list-style: none;
- 
 }
 
 @keyframes meals-appear {
@@ -21,14 +20,14 @@
     transform: translateY(0);
   }
 }
-.meallist {
+.medlist {
   padding: 1rem;
   color: white;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 1);
   border-radius: 14px;
   background-color: rgb(91, 27, 11);
 }
-.meals-1 {
+.meds-1 {
   border-bottom: 1px solid #ccc;
 
   margin: 1rem;

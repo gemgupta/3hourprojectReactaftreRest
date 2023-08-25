@@ -1,0 +1,25 @@
+.med-form {
+  float: right;
+}
+
+.formbutton {
+  float: right;
+  border-radius: 1.4rem;
+  width: 6rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  margin: 2.5rem 0rem;
+}
+.formbutton:hover {
+  background-color: rgb(85, 21, 5);
+  color: white;
+}
+button:disabled,
+button:focus:disabled,
+button:hover:disabled,
+button:active:disabled {
+  background: #ccc;
+  border-color: #ccc;
+  color: #666666;
+  cursor: not-allowed;
+}

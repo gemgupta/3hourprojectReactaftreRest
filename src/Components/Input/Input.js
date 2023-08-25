@@ -26,16 +26,19 @@ function Input(props) {
   };
   const SubmitHandler = (event) => {
     event.preventDefault();
-    const data = {
-      id: enteredid,
-      name: enteredName,
-      price: eneteredPrice,
-      description: eneteredDes,
-      quant: enteredQuant,
-    };
-    Cartctx.addMed(data)
-    // props.getdata(data);
-    // console.log(data)
+    if (enteredid > 0 && eneteredPrice > 0 && enteredQuant > 0) {
+      const data = {
+        id: enteredid,
+        name: enteredName,
+        price: eneteredPrice,
+        description: eneteredDes,
+        quant: enteredQuant,
+      };
+      Cartctx.addMed(data);
+    } else {
+      alert("You have entered a negative number");
+    }
+
     setEnteredId("");
     setenteredName("");
     setEneteredDes("");
@@ -45,12 +48,13 @@ function Input(props) {
   return (
     <div className="inputform">
       <form onSubmit={SubmitHandler}>
-        <label htmlFor="prodcutId">Product Id:</label>
+        <label htmlFor="productId">Product Id:</label>
         <input
           type="number"
           id="productId"
           value={enteredid}
           onChange={idHandler}
+          required
         />
         <label htmlFor="name">Name:</label>
         <input
@@ -58,6 +62,8 @@ function Input(props) {
           id="name"
           value={enteredName}
           onChange={nameHandler}
+          required
+          autoComplete="off"
         />
         <label htmlFor="description">Description:</label>
         <input
@@ -65,6 +71,7 @@ function Input(props) {
           id="description"
           value={eneteredDes}
           onChange={descriptionHandler}
+          required
         />
         <label htmlFor="price">Price:</label>
         <input
@@ -72,6 +79,7 @@ function Input(props) {
           id="price"
           value={eneteredPrice}
           onChange={priceHandler}
+          required
         />
         <label htmlFor="quant">Quantity Available:</label>
         <input
@@ -79,6 +87,7 @@ function Input(props) {
           id="quant"
           value={enteredQuant}
           onChange={quantHandler}
+          required
         />
 
         <button type="submit">Add</button>

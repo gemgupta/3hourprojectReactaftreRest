@@ -1,22 +1,23 @@
 import React from "react";
-import "./Meals.css";
+import "./MedsItem.css";
 import { useContext } from "react";
-import MealsForm from "./MealsForm";
+import MealsForm from "./MedsForm";
 import CartContext from "../Store/CartContext";
 
-function Meals() {
-  const Cartctx= useContext(CartContext)
+function Meds() {
+  const Cartctx = useContext(CartContext);
   return (
-    <section className="meals meallist">
+    <section className="meds medlist">
       <ul>
         {Cartctx.med.map((item) => (
-          <div key={item.id} className="meals-1">
+          <div key={item.id} className="meds-1">
             <MealsForm item={item} />
             <h3>{item.name}</h3>
             <div className="discription">{item.description}</div>
             <div className="price">INR {item.price}</div>
-            <div >Quantity Left {item.quant}</div>
-            
+            <div>
+              Quantity Left {item.quant > 0 ? item.quant : ": Out Of Stock"}
+            </div>
           </div>
         ))}
       </ul>
@@ -24,4 +25,4 @@ function Meals() {
   );
 }
 
-export default Meals;
+export default Meds;
